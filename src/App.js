@@ -88,6 +88,11 @@ function App() {
     // window.location.reload(false);
   };
 
+  const closeMainPageHandlerReload = () => {
+    setMainPageShown(false);
+    window.location.reload(false);
+  };
+
   const getAllData = () => {
     get(child(dbRef, "Posts")).then((snapshot) => {
       var allproducts = [];
@@ -123,6 +128,7 @@ function App() {
           desc={mainPageDesc}
           view={mainPageView}
           vote={mainPageVote}
+          onClick={closeMainPageHandlerReload}
         />
       )}
       {mainPageShown && <Backdrop onClick={closeMainPageHandler} />}

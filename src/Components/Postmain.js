@@ -27,33 +27,36 @@ function Postmain(props) {
   //   const [oldStage, setOldStage] = useState(props.stage);
   //   var teststage = oldStage;
 
-  const setView = (e) => {
-    console.log(e);
-    set(ref(db, "Posts/" + props.title + "/View"), e);
+  const [curVote, setCurVote] = useState(props.vote);
+
+  const upVote = () => {
+    console.log(props.vote);
+    setCurVote(curVote + 1);
+    set(ref(db, "Posts/" + props.title + "/Vote"), props.vote + 1);
   };
 
-  //   const upVote = (e) => {
-  //     console.log(e);
-  //     set(ref(db, "Posts/" + props.title + "/Vote"), e + 1);
-  //   };
+  const downVote = () => {
+    console.log(props.vote);
+    setCurVote(curVote - 1);
+    set(ref(db, "Posts/" + props.title + "/Vote"), props.vote - 1);
+  };
 
-  //   const downVote = (e) => {
-  //     console.log(e);
-  //     set(ref(db, "Posts/" + props.title + "/Vote"), e - 1);
-  //   };
-
-  const setVote = (e) => {
-    console.log(e);
-    set(ref(db, "Posts/" + props.title + "/Vote"), e);
+  const deletePost = () => {
+    console.log("test");
+    set(ref(db, "Posts/" + props.title), {});
+    props.onClick();
   };
 
   useEffect(() => {
+    const setView = (e) => {
+      console.log(e);
+      set(ref(db, "Posts/" + props.title + "/View"), e);
+    };
     setView(props.view + 1);
   }, []);
 
   return (
     <div className="main-page">
-      {}
       <div className="main-title">{props.title}</div>
       <br />
       <div className="main-desc">{props.desc}</div>
@@ -61,13 +64,16 @@ function Postmain(props) {
       <div className="main-view-vote-wrapper">
         <div className="main-view">Views: {props.view}</div>
         <div className="main-vote-wrapper">
-          {/* <button onClick={upVote(props.vote)}>Up</button> */}
-          <button onClick={setVote(props.vote + 1)}>Up</button>
-          {/* <button onClick={downVote(props.vote)}>Down</button> */}
-          <button onClick={setVote(props.vote - 1)}>Down</button>
-          <div>Vote: {props.vote}</div>
+          <button onClick={upVote}>Up</button>
+          {/* <button onClick={setVote(props.vote + 1)}>Up</button> */}
+          <button onClick={downVote}>Down</button>
+          {/* <button onClick={setVote(props.vote - 1)}>Down</button> */}
+          <div>Vote: {curVote}</div>
         </div>
       </div>
+      <button className="delete-button" onClick={deletePost}>
+        Delete
+      </button>
     </div>
   );
 }

@@ -9,6 +9,7 @@ import {
   child,
   get,
 } from "@firebase/database";
+import { sha256, sha224 } from "js-sha256";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBrTL0337ihHSJwk8HfDsrdd9-oFZr6xAY",
@@ -41,6 +42,7 @@ function Form(props) {
 
   const createPost = async () => {
     if (title !== "" && desc !== "") {
+      console.log(sha256(title));
       set(ref(db, "Posts/" + title), {
         Title: title,
         Desc: desc,
@@ -54,6 +56,7 @@ function Form(props) {
 
   return (
     <div className="form">
+      {/* {console.log(sha256("coolbeans"))} */}
       <div className="text-field">
         <div>
           <label>Title:</label>
