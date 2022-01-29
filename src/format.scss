@@ -93,7 +93,7 @@ textarea {
 
 .post-wrapper {
   border: 1px solid rgb(0, 0, 0);
-  border-color: black;
+  border-color: $clr-primary;
   padding: 1rem;
   margin-bottom: 2rem;
   display: flex;
@@ -161,16 +161,16 @@ textarea {
 }
 
 .like-button {
-  width: 1vw;
-  height: 1vw;
+  width: 1rem;
+  height: 1rem;
   margin: 0 3px;
   padding-top: 5px;
   cursor: pointer;
 }
 
 .dislike-button {
-  width: 1vw;
-  height: 1vw;
+  width: 1rem;
+  height: 1rem;
   margin: 0 3px;
   padding-top: 5px;
   padding-right: 5px;
@@ -178,8 +178,8 @@ textarea {
 }
 
 .bin-button {
-  width: 1vw;
-  height: 1vw;
+  width: 1rem;
+  height: 1rem;
   margin-top: 1.5vh;
   margin-right: 1vw;
   cursor: pointer;

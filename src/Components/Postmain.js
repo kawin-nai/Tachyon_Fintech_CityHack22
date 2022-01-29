@@ -31,17 +31,35 @@ const dbRef = ref(db);
 
 function Postmain(props) {
   const [curVote, setCurVote] = useState(props.vote);
+  const [ID, setID] = useState();
+  var contract = props.mycontract;
 
-  const upVote = () => {
+  const upVote = async () => {
     console.log(props.vote);
-    setCurVote(curVote + 1);
-    set(ref(db, "Posts/" + props.title + "/Vote"), props.vote + 1);
+    // console.log("ID: " + ID);
+    await contract
+      .increaseVote(ID)
+      .then(() => {
+        setCurVote(curVote + 1);
+        set(ref(db, "Posts/" + props.title + "/Vote"), props.vote + 1);
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
   };
 
-  const downVote = () => {
+  const downVote = async () => {
     console.log(props.vote);
-    setCurVote(curVote - 1);
-    set(ref(db, "Posts/" + props.title + "/Vote"), props.vote - 1);
+    // console.log(props.Id);
+    await contract
+      .decreaseVote(ID)
+      .then(() => {
+        setCurVote(curVote - 1);
+        set(ref(db, "Posts/" + props.title + "/Vote"), props.vote - 1);
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
   };
 
   const deletePost = () => {
@@ -56,6 +74,12 @@ function Postmain(props) {
       set(ref(db, "Posts/" + props.title + "/View"), e);
     };
     setView(props.view + 1);
+    console.log(props.mycontract);
+
+    get(child(dbRef, "Posts/" + props.title + "/Id")).then((snapshot) => {
+      console.log("ID retrieved" + snapshot.val());
+      setID(snapshot.val());
+    });
   }, []);
 
   return (

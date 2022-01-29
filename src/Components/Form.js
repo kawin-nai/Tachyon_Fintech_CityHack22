@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../format.scss";
 import { initializeApp } from "firebase/app";
 import {
@@ -30,8 +30,10 @@ function Form(props) {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [view, setView] = useState(0);
-  const [author, setAuthor] = useState("");
   const [vote, setVote] = useState(0);
+  const [curID, setCurID] = useState(0);
+  var contract = props.mycontract;
+
   const createTitle = (e) => {
     setTitle(e.target.value);
   };
@@ -42,21 +44,37 @@ function Form(props) {
 
   const createPost = async () => {
     if (title !== "" && desc !== "") {
-      console.log(sha256(title));
-      set(ref(db, "Posts/" + title), {
-        Title: title,
-        Desc: desc,
-        Id: 1,
-        View: view,
-        Vote: vote,
-      });
+      const hasheddesc = sha256(desc);
+      await contract
+        .create_post(curID, hasheddesc)
+        .then(() => {
+          set(ref(db, "Posts/" + title), {
+            Title: title,
+            Desc: desc,
+            Id: curID,
+            View: view,
+            Vote: vote,
+          });
+          set(ref(db, "ID"), curID + 1);
+          props.onClick();
+        })
+        .catch((error) => {
+          alert(error.message);
+        });
+    } else {
+      alert("Please fill out the form");
     }
-    props.onClick();
   };
+
+  useEffect(() => {
+    get(child(dbRef, "ID")).then((snapshot) => {
+      var ID = snapshot.val();
+      setCurID(ID);
+    });
+  }, []);
 
   return (
     <div className="form">
-      {/* {console.log(sha256("coolbeans"))} */}
       <div className="text-field">
         <div>
           <label>Title:</label>

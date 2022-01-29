@@ -7,6 +7,7 @@ import Connector from "./Components/Connector";
 import Postmain from "./Components/Postmain";
 import React, { useState, useEffect } from "react";
 import { initializeApp } from "firebase/app";
+import { ethers } from "ethers";
 import {
   Database,
   getDatabase,
@@ -15,7 +16,7 @@ import {
   set,
   child,
 } from "@firebase/database";
-import { saveAs, FileSaver } from "file-saver";
+import tachyoncontract from "./tachyoncontract.json";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBrTL0337ihHSJwk8HfDsrdd9-oFZr6xAY",
@@ -33,7 +34,6 @@ const db = getDatabase();
 const dbRef = ref(db);
 
 function App() {
-  const [stateChange, setStateChange] = useState();
   const [modalOpen, setModalOpen] = useState(false);
   const [isConnected, setIsConnected] = useState(false);
   const [account, setAccount] = useState(null);
@@ -46,7 +46,7 @@ function App() {
   const [mainPageShown, setMainPageShown] = useState(false);
   const [mainPageView, setMainPageView] = useState();
   const [mainPageVote, setMainPageVote] = useState();
-  const [curView, setCurView] = useState();
+  const contractAddress = "0xf927773B72933FBD2f3Ab29770FA1C2c928E7Da4";
 
   const login = async () => {
     if (window.ethereum) {
@@ -63,7 +63,23 @@ function App() {
 
   const accountChangeHandler = (newaccount) => {
     setAccount(newaccount);
-    // updateEthers();
+    updateEthers();
+  };
+
+  const updateEthers = () => {
+    const tempProvider = new ethers.providers.Web3Provider(window.ethereum);
+    setProvider(tempProvider);
+
+    const tempSigner = tempProvider.getSigner();
+    setSigner(tempSigner);
+
+    const tempContract = new ethers.Contract(
+      contractAddress,
+      tachyoncontract,
+      // portalcontracttwo,
+      tempSigner
+    );
+    setContract(tempContract);
   };
 
   const closeModalHandler = () => {
@@ -85,7 +101,6 @@ function App() {
 
   const closeMainPageHandler = () => {
     setMainPageShown(false);
-    // window.location.reload(false);
   };
 
   const closeMainPageHandlerReload = () => {
@@ -117,7 +132,9 @@ function App() {
           New Post
         </button>
         {modalOpen && <Backdrop onClick={closeModalHandler} />}
-        {modalOpen && <Form onClick={closeModalHandlerWithReload} />}
+        {modalOpen && (
+          <Form onClick={closeModalHandlerWithReload} mycontract={contract} />
+        )}
 
         {!isConnected && <Connector onLogin={login} />}
         {isConnected && <div className="account-number">{account}</div>}
@@ -128,6 +145,7 @@ function App() {
           desc={mainPageDesc}
           view={mainPageView}
           vote={mainPageVote}
+          mycontract={contract}
           onClick={closeMainPageHandlerReload}
         />
       )}
