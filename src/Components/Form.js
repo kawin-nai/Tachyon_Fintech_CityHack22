@@ -9,7 +9,7 @@ import {
   child,
   get,
 } from "@firebase/database";
-import { sha256, sha224 } from "js-sha256";
+import { sha256 } from "js-sha256";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBrTL0337ihHSJwk8HfDsrdd9-oFZr6xAY",
@@ -43,7 +43,9 @@ function Form(props) {
   };
 
   const createPost = async () => {
-    if (title !== "" && desc !== "") {
+    if (contract == null) {
+      alert("Please log in to MetaMask");
+    } else if (title !== "" && desc !== "") {
       const hasheddesc = sha256(desc);
       await contract
         .create_post(curID, hasheddesc)

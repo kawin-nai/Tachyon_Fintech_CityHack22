@@ -25,6 +25,11 @@ h3 {
   margin-top: 0;
 }
 
+.post {
+  font-size: larger;
+  margin-left: 8rem;
+}
+
 .form {
   display: flex;
   flex-direction: column;
@@ -110,7 +115,7 @@ textarea {
 .content-wrapper {
   display: flex;
   flex-direction: column;
-  padding: 4rem;
+  padding: 0rem 4rem;
   margin: 0rem 4rem;
 }
 
@@ -176,6 +181,14 @@ textarea {
 
 .main-view {
   padding: 0 1vw;
+}
+
+.verified {
+  color: green;
+}
+
+.tampered {
+  color: red;
 }
 
 .main-vote-wrapper {

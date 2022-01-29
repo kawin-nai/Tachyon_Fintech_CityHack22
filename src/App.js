@@ -46,7 +46,7 @@ function App() {
   const [mainPageShown, setMainPageShown] = useState(false);
   const [mainPageView, setMainPageView] = useState();
   const [mainPageVote, setMainPageVote] = useState();
-  const contractAddress = "0xf927773B72933FBD2f3Ab29770FA1C2c928E7Da4";
+  const contractAddress = "0x4aa4d686b6108631e79f160fccadc0788b832e15";
 
   const login = async () => {
     if (window.ethereum) {
@@ -151,6 +151,9 @@ function App() {
       )}
       {mainPageShown && <Backdrop onClick={closeMainPageHandler} />}
       <div className="main-back">
+        <div className="post">
+          <h2>Posts</h2>
+        </div>
         <div className="content-wrapper">
           {ListOfProduct
             ? ListOfProduct.map((databasearrdetail) => {

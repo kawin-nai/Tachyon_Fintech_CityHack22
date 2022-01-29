@@ -13,6 +13,7 @@ import dislike from "./dislike.png";
 import likefilled from "./likefilled.png";
 import dislikefilled from "./dislikefilled.png";
 import bin from "./bin.png";
+import { sha256 } from "js-sha256";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBrTL0337ihHSJwk8HfDsrdd9-oFZr6xAY",
@@ -32,7 +33,9 @@ const dbRef = ref(db);
 function Postmain(props) {
   const [curVote, setCurVote] = useState(props.vote);
   const [ID, setID] = useState();
+  const [verified, setVerified] = useState(true);
   var contract = props.mycontract;
+  var thisID;
 
   const upVote = async () => {
     console.log(props.vote);
@@ -62,13 +65,24 @@ function Postmain(props) {
       });
   };
 
-  const deletePost = () => {
+  const verify = async () => {
+    const hasheddesc = sha256(props.desc);
+    let isVerified = await contract
+      .verify(thisID, hasheddesc)
+      .catch((error) => {
+        alert(error.message);
+      });
+    setVerified(isVerified);
+    console.log(isVerified);
+  };
+
+  const deletePost = async () => {
     console.log("test");
     set(ref(db, "Posts/" + props.title), {});
     props.onClick();
   };
 
-  useEffect(() => {
+  useEffect(async () => {
     const setView = (e) => {
       console.log(e);
       set(ref(db, "Posts/" + props.title + "/View"), e);
@@ -76,10 +90,17 @@ function Postmain(props) {
     setView(props.view + 1);
     console.log(props.mycontract);
 
-    get(child(dbRef, "Posts/" + props.title + "/Id")).then((snapshot) => {
+    await get(child(dbRef, "Posts/" + props.title + "/Id")).then((snapshot) => {
       console.log("ID retrieved: " + snapshot.val());
+      thisID = snapshot.val();
       setID(snapshot.val());
     });
+
+    // await setTimeout(() => {
+    //   console.log("World!");
+    // }, 2000);
+
+    await verify();
   }, []);
 
   return (
@@ -102,6 +123,9 @@ function Postmain(props) {
       <br />
       <div className="main-view-vote-wrapper">
         <div className="main-view">Views: {props.view}</div>
+        {/* <button onClick={verify}>Verify</button> */}
+        {verified && <div className="verified">Verified</div>}
+        {!verified && <div className="tampered">Tampered Message</div>}
         <div className="main-vote-wrapper">
           <img
             className="like-button"
