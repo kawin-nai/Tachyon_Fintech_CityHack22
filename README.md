@@ -1,70 +1,37 @@
-# Getting Started with Create React App
+# CityHack22 Project Submission
+## Project: Sharable
+<img src="../resource/icon.png" width="200" alt="project_logo"/>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+< Replace the logo above with Your Project Logo >
+## Team: Tachyon
+## Members
+- Peeti PIYANAWIN (Leader)
+- Kawin NAIPONGPRASIT
+- Phitchayapha SITTHITAN
 
-## Available Scripts
+## Description of the Project
+**Tl;dr Shareable: a community-driven financial data platform leveraged by blockchain with a reward-based system determined by community participation.**
 
-In the project directory, you can run:
+Shareable is a community-driven financial data platform with the purpose of incentivizing anyone to share their financial information. The platform will have the native token called "Share" which can be used to subscription the platform or rewarded to the users sharing the valuable information. The entry price will be around 110 HKD (14 USD) which can be determined by the price oracle. The users will then can access and write the article, and also upvote for their favorable post. The reward will be calculated by dividing the daily number of upvotes for a specific post by the daily total number of upvotes, multiped by 0.1% of the token's total supply, and sent to the author of that article. This reward mechanic will incentivize users to contribute the information, which drive the value of the token, and, in turn, drive the incentivize even more. This process will create a sustainable incentivized mechanism.
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 3 Most Impactful Features of the Project
+1. Crowd-Source Data Service
+   Anyone can contribute or share the financial data platform with a focus on accessibility and anonymity to increase the capacity of sharing network.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+3. Native Platform Token
+   The platform will have its own token value which has a utility for subscribing to the platform and rewarding the users who share valuable information.
+   Consequently, the value of the token will be driven by the value of the information itself, creating a demand for a subscription.
 
-### `npm test`
+4. On-chain Verification
+   The platform will also provide a tampered-proof functionality by utilizing hashing(SHA256) algorithm and comparing with the hash of the data that has been stored on the   
+   blockchain
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Tech used (as many as required)
+1. Blockchain Wallet (e.g., Metamask)
+2. React.js
+3. Google Firebase
+4. Solidity
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Link
+- < 3 minute Youtube Video Link for Project Demo >
