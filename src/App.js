@@ -4,6 +4,7 @@ import Navbar from "./Components/Navbar";
 import Backdrop from "./Components/Backdrop";
 import Form from "./Components/Form";
 import Connector from "./Components/Connector";
+import Postmain from "./Components/Postmain";
 import React, { useState, useEffect } from "react";
 import { initializeApp } from "firebase/app";
 import {
@@ -14,6 +15,7 @@ import {
   set,
   child,
 } from "@firebase/database";
+import { saveAs, FileSaver } from "file-saver";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBrTL0337ihHSJwk8HfDsrdd9-oFZr6xAY",
@@ -39,6 +41,12 @@ function App() {
   const [signer, setSigner] = useState(null);
   const [contract, setContract] = useState(null);
   const [ListOfProduct, setListOfProduct] = useState();
+  const [mainPageTitle, setMainPageTitle] = useState("");
+  const [mainPageDesc, setMainPageDesc] = useState("");
+  const [mainPageShown, setMainPageShown] = useState(false);
+  const [mainPageView, setMainPageView] = useState();
+  const [mainPageVote, setMainPageVote] = useState();
+  const [curView, setCurView] = useState();
 
   const login = async () => {
     if (window.ethereum) {
@@ -71,6 +79,15 @@ function App() {
     setModalOpen(true);
   };
 
+  const mainPageHandler = () => {
+    setMainPageShown(true);
+  };
+
+  const closeMainPageHandler = () => {
+    setMainPageShown(false);
+    // window.location.reload(false);
+  };
+
   const getAllData = () => {
     get(child(dbRef, "Posts")).then((snapshot) => {
       var allproducts = [];
@@ -80,6 +97,7 @@ function App() {
       });
 
       setListOfProduct(allproducts);
+      console.log(allproducts);
     });
   };
 
@@ -99,6 +117,15 @@ function App() {
         {!isConnected && <Connector onLogin={login} />}
         {isConnected && <div className="account-number">{account}</div>}
       </div>
+      {mainPageShown && (
+        <Postmain
+          title={mainPageTitle}
+          desc={mainPageDesc}
+          view={mainPageView}
+          vote={mainPageVote}
+        />
+      )}
+      {mainPageShown && <Backdrop onClick={closeMainPageHandler} />}
       <div className="main-back">
         <div className="content-wrapper">
           {ListOfProduct
@@ -107,6 +134,15 @@ function App() {
                   <Post
                     desc={databasearrdetail.Desc}
                     title={databasearrdetail.Title}
+                    view={databasearrdetail.View}
+                    vote={databasearrdetail.Vote}
+                    onClick={() => {
+                      setMainPageDesc(databasearrdetail.Desc);
+                      setMainPageTitle(databasearrdetail.Title);
+                      setMainPageView(databasearrdetail.View);
+                      setMainPageVote(databasearrdetail.Vote);
+                      mainPageHandler();
+                    }}
                   />
                 );
               })

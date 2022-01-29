@@ -28,8 +28,9 @@ const dbRef = ref(db);
 function Form(props) {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
-  const [view, setView] = useState();
+  const [view, setView] = useState(0);
   const [author, setAuthor] = useState("");
+  const [vote, setVote] = useState(0);
   const createTitle = (e) => {
     setTitle(e.target.value);
   };
@@ -44,6 +45,8 @@ function Form(props) {
         Title: title,
         Desc: desc,
         Id: 1,
+        View: view,
+        Vote: vote,
       });
     }
     props.onClick();
