@@ -4,10 +4,58 @@ import Navbar from "./Components/Navbar";
 import Backdrop from "./Components/Backdrop";
 import Form from "./Components/Form";
 import React, { useState, useEffect } from "react";
+import { initializeApp } from "firebase/app";
+import {
+  Database,
+  getDatabase,
+  get,
+  ref,
+  set,
+  child,
+} from "@firebase/database";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBrTL0337ihHSJwk8HfDsrdd9-oFZr6xAY",
+  authDomain: "tachyon-cityhack.firebaseapp.com",
+  databaseURL:
+    "https://tachyon-cityhack-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "tachyon-cityhack",
+  storageBucket: "tachyon-cityhack.appspot.com",
+  messagingSenderId: "1088178599200",
+  appId: "1:1088178599200:web:b27fd2a422d1ee86c35345",
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase();
+const dbRef = ref(db);
 
 function App() {
   const [stateChange, setStateChange] = useState();
   const [modalOpen, setModalOpen] = useState(false);
+  const [isConnected, setIsConnected] = useState(false);
+  const [account, setAccount] = useState(null);
+  const [provider, setProvider] = useState(null);
+  const [signer, setSigner] = useState(null);
+  const [contract, setContract] = useState(null);
+  const [ListOfProduct, setListOfProduct] = useState();
+
+  const login = async () => {
+    if (window.ethereum) {
+      window.ethereum
+        .request({ method: "eth_requestAccounts" })
+        .then((result) => {
+          accountChangeHandler(result[0]);
+          setIsConnected(true);
+        });
+    } else {
+      console.log("Metamask not installed");
+    }
+  };
+
+  const accountChangeHandler = (newaccount) => {
+    setAccount(newaccount);
+    // updateEthers();
+  };
 
   const closeModalHandler = () => {
     setModalOpen(false);
@@ -17,11 +65,39 @@ function App() {
     setModalOpen(true);
   };
 
+  const getAllData = () => {
+    get(child(dbRef, "Posts")).then((snapshot) => {
+      var allproducts = [];
+
+      snapshot.forEach((childSnapshot) => {
+        allproducts.push(childSnapshot.val());
+      });
+
+      setListOfProduct(allproducts);
+    });
+  };
+
+  useEffect(() => {
+    getAllData();
+  }, []);
+
   return (
     <div className="main-back">
-      <button onClick={openModalHandler}>Open Modal</button>
+      <button onClick={openModalHandler}>New Post</button>
       {modalOpen && <Backdrop onClick={closeModalHandler} />}
       {modalOpen && <Form onClick={closeModalHandler} />}
+      <div className="content-wrapper">
+        {ListOfProduct
+          ? ListOfProduct.map((databasearrdetail) => {
+              return (
+                <Post
+                  desc={databasearrdetail.Desc}
+                  title={databasearrdetail.Title}
+                />
+              );
+            })
+          : ""}
+      </div>
     </div>
   );
 }

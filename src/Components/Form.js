@@ -1,5 +1,21 @@
 import React, { useState } from "react";
 import "../format.scss";
+import { initializeApp } from "firebase/app";
+import { Database, getDatabase, ref, set, child } from "@firebase/database";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBrTL0337ihHSJwk8HfDsrdd9-oFZr6xAY",
+  authDomain: "tachyon-cityhack.firebaseapp.com",
+  databaseURL:
+    "https://tachyon-cityhack-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "tachyon-cityhack",
+  storageBucket: "tachyon-cityhack.appspot.com",
+  messagingSenderId: "1088178599200",
+  appId: "1:1088178599200:web:b27fd2a422d1ee86c35345",
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase();
 
 function Form(props) {
   const [title, setTitle] = useState("");
@@ -14,7 +30,13 @@ function Form(props) {
 
   const createPost = async () => {
     if (title !== "" && desc !== "") {
+      set(ref(db, "Posts/" + title), {
+        Title: title,
+        Desc: desc,
+        Id: 1,
+      });
     }
+    props.onClick();
   };
 
   return (
