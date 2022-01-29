@@ -35,7 +35,7 @@ Shareable is a community-driven financial data platform with the purpose of ince
    blockchain
 
 ## Tech used
-1. Blockchain Wallet (e.g., Metamask)
+1. Metamask
 2. React.js
 3. Google Firebase
 4. Solidity
