@@ -1,8 +1,7 @@
 # CityHack22 Project Submission
 ## Project: Sharable
-<img src="../resource/icon.png" width="200" alt="project_logo"/>
+<img src="/resource/icon.png" width="200" alt="project_logo"/>
 
-< Replace the logo above with Your Project Logo >
 ## Team: Tachyon
 ## Members
 - Peeti PIYANAWIN (Leader)
