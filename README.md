@@ -18,7 +18,7 @@ Shareable is a community-driven financial data platform with the purpose of ince
 <img src="/resource/Feature1.png" width="300" alt="project_logo"/>
 1. Crowd-Source Data Service
    
-   Anyone can contribute or share their financial data platform with a focus on accessibility and anonymity to increase the capacity of sharing network.
+   Anyone can contribute or share their financial data with a focus on accessibility and anonymity to increase the capacity of sharing network.
 
 
 <img src="/resource/Feature2.png" width="300" alt="project_logo"/>
