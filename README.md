@@ -31,7 +31,7 @@ Shareable is a community-driven financial data platform with the purpose of ince
    The platform will also provide a tampered-proof functionality by utilizing hashing(SHA256) algorithm and comparing with the hash of the data that has been stored on the   
    blockchain
 
-## Tech used (as many as required)
+## Tech used
 1. Blockchain Wallet (e.g., Metamask)
 2. React.js
 3. Google Firebase
