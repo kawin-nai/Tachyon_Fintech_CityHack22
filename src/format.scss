@@ -79,8 +79,31 @@ h3 {
   font-family: inherit;
 }
 
+.create-post-button {
+  padding: 1rem;
+  font-family: inherit;
+  font-weight: bold;
+  font-size: 1rem;
+  //   margin: 1rem;
+  width: 29.5rem;
+  border: 2px solid $clr-primary;
+  background: transparent;
+  color: $clr-primary;
+  border-radius: $radius;
+  transition: background 100ms ease-in, color 100ms ease-in;
+  background-color: white;
+  cursor: pointer;
+
+  &:hover {
+    background: $clr-primary;
+    color: white;
+  }
+}
+
 textarea {
   height: 29rem;
+  width: 29rem;
+  //   width: inherit;
   //   font-family: inherit;
 }
 

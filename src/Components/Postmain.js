@@ -77,7 +77,7 @@ function Postmain(props) {
     console.log(props.mycontract);
 
     get(child(dbRef, "Posts/" + props.title + "/Id")).then((snapshot) => {
-      console.log("ID retrieved" + snapshot.val());
+      console.log("ID retrieved: " + snapshot.val());
       setID(snapshot.val());
     });
   }, []);

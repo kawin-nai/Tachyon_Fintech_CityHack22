@@ -93,7 +93,9 @@ function Form(props) {
         </div>
         <br />
         <div>
-          <button onClick={createPost}>Create Post</button>
+          <button onClick={createPost} className="create-post-button">
+            Create Post
+          </button>
         </div>
       </div>
     </div>
