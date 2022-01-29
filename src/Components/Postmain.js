@@ -8,6 +8,12 @@ import {
   child,
   get,
 } from "@firebase/database";
+import like from "./like.png";
+import dislike from "./dislike.png";
+import likefilled from "./likefilled.png";
+import dislikefilled from "./dislikefilled.png";
+import bin from "./bin.png";
+
 const firebaseConfig = {
   apiKey: "AIzaSyBrTL0337ihHSJwk8HfDsrdd9-oFZr6xAY",
   authDomain: "tachyon-cityhack.firebaseapp.com",
@@ -24,9 +30,6 @@ const db = getDatabase();
 const dbRef = ref(db);
 
 function Postmain(props) {
-  //   const [oldStage, setOldStage] = useState(props.stage);
-  //   var teststage = oldStage;
-
   const [curVote, setCurVote] = useState(props.vote);
 
   const upVote = () => {
@@ -57,23 +60,44 @@ function Postmain(props) {
 
   return (
     <div className="main-page">
-      <div className="main-title">{props.title}</div>
+      <div className="main-top">
+        <div className="main-title">{props.title}</div>
+        <img
+          className="bin-button"
+          src={bin}
+          alt="Delete Button"
+          onClick={deletePost}
+        />
+        {/* <button className="delete-button" onClick={deletePost}>
+          Delete
+        </button> */}
+      </div>
+
       <br />
       <div className="main-desc">{props.desc}</div>
       <br />
       <div className="main-view-vote-wrapper">
         <div className="main-view">Views: {props.view}</div>
         <div className="main-vote-wrapper">
-          <button onClick={upVote}>Up</button>
+          <img
+            className="like-button"
+            src={likefilled}
+            alt="Like Button"
+            onClick={upVote}
+          />
+          {/* <button onClick={upVote}>Up</button> */}
           {/* <button onClick={setVote(props.vote + 1)}>Up</button> */}
-          <button onClick={downVote}>Down</button>
+          <img
+            className="dislike-button"
+            src={dislikefilled}
+            alt="Dislike Button"
+            onClick={downVote}
+          />
+          {/* <button onClick={downVote}>Down</button> */}
           {/* <button onClick={setVote(props.vote - 1)}>Down</button> */}
           <div>Vote: {curVote}</div>
         </div>
       </div>
-      <button className="delete-button" onClick={deletePost}>
-        Delete
-      </button>
     </div>
   );
 }

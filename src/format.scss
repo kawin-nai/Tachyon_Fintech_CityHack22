@@ -2,6 +2,10 @@ $clr-primary: #0086e8;
 $radius: 1.2rem;
 @import url("https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap");
 
+.all {
+  background-color: #f2f7f7;
+  height: 100vh;
+}
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -15,6 +19,10 @@ $radius: 1.2rem;
   height: 100vh;
   top: 0;
   left: 0;
+}
+
+h3 {
+  margin-top: 0;
 }
 
 .form {
@@ -44,6 +52,7 @@ $radius: 1.2rem;
   color: $clr-primary;
   border-radius: $radius;
   transition: background 100ms ease-in, color 100ms ease-in;
+  background-color: white;
   cursor: pointer;
 
   &:hover {
@@ -88,6 +97,14 @@ textarea {
   padding: 1rem;
   margin-bottom: 2rem;
   display: flex;
+  background-color: white;
+  box-shadow: 0 2px 20px #e1e5ee;
+  transition: transform 0.1s ease-in;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.01);
+  }
 }
 
 .vote-wrapper {
@@ -105,7 +122,7 @@ textarea {
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
   border-radius: 6px;
   background-color: white;
-  padding: 1rem;
+  padding: 1.5rem;
   text-align: justify;
   width: 50vw;
   z-index: 10;
@@ -114,6 +131,10 @@ textarea {
   left: calc(50% - 25vw);
 }
 
+.main-top {
+  display: flex;
+  justify-content: space-between;
+}
 .main-title {
   font-size: large;
   font-weight: bold;
@@ -136,4 +157,30 @@ textarea {
 
 .main-vote-wrapper {
   display: flex;
+  margin-right: 1vw;
+}
+
+.like-button {
+  width: 1vw;
+  height: 1vw;
+  margin: 0 3px;
+  padding-top: 5px;
+  cursor: pointer;
+}
+
+.dislike-button {
+  width: 1vw;
+  height: 1vw;
+  margin: 0 3px;
+  padding-top: 5px;
+  padding-right: 5px;
+  cursor: pointer;
+}
+
+.bin-button {
+  width: 1vw;
+  height: 1vw;
+  margin-top: 1.5vh;
+  margin-right: 1vw;
+  cursor: pointer;
 }

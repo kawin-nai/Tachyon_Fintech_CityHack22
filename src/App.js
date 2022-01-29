@@ -111,7 +111,7 @@ function App() {
   }, []);
 
   return (
-    <div>
+    <div className="all">
       <div className="navbar">
         <button onClick={openModalHandler} className="connect-button">
           New Post
