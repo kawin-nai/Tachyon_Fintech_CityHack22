@@ -1,5 +1,10 @@
+$clr-primary: #0086e8;
+$radius: 1.2rem;
+@import url("https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap");
+
 .navbar {
   display: flex;
+  justify-content: space-between;
 }
 
 .backdrop {
@@ -26,4 +31,46 @@
   position: fixed;
   top: 15vh;
   left: calc(50% - 15rem);
+}
+
+.connect-button {
+  padding: 1rem;
+  font-family: inherit;
+  font-weight: bold;
+  font-size: 1rem;
+  margin: 1rem;
+  border: 2px solid $clr-primary;
+  background: transparent;
+  color: $clr-primary;
+  border-radius: $radius;
+  transition: background 100ms ease-in, color 100ms ease-in;
+  cursor: pointer;
+
+  &:hover {
+    background: $clr-primary;
+    color: white;
+  }
+}
+
+.account-number {
+  padding: 1rem;
+  font-family: inherit;
+  font-weight: bold;
+  font-size: 1rem;
+  margin: 1rem;
+  border: 2px solid $clr-primary;
+  background: transparent;
+  color: $clr-primary;
+  border-radius: $radius;
+  transition: background 100ms ease-in, color 100ms ease-in;
+}
+
+.input-field {
+  width: 29rem;
+  font-family: inherit;
+}
+
+textarea {
+  height: 29rem;
+  //   font-family: inherit;
 }

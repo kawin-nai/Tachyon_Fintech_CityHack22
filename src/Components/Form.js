@@ -1,7 +1,14 @@
 import React, { useState } from "react";
 import "../format.scss";
 import { initializeApp } from "firebase/app";
-import { Database, getDatabase, ref, set, child } from "@firebase/database";
+import {
+  Database,
+  getDatabase,
+  ref,
+  set,
+  child,
+  get,
+} from "@firebase/database";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBrTL0337ihHSJwk8HfDsrdd9-oFZr6xAY",
@@ -16,10 +23,13 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getDatabase();
+const dbRef = ref(db);
 
 function Form(props) {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
+  const [view, setView] = useState();
+  const [author, setAuthor] = useState("");
   const createTitle = (e) => {
     setTitle(e.target.value);
   };
@@ -57,6 +67,7 @@ function Form(props) {
             onChange={createDesc}
           />
         </div>
+        <br />
         <div>
           <button onClick={createPost}>Create Post</button>
         </div>

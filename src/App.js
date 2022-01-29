@@ -3,6 +3,7 @@ import Post from "./Components/Post";
 import Navbar from "./Components/Navbar";
 import Backdrop from "./Components/Backdrop";
 import Form from "./Components/Form";
+import Connector from "./Components/Connector";
 import React, { useState, useEffect } from "react";
 import { initializeApp } from "firebase/app";
 import {
@@ -61,6 +62,11 @@ function App() {
     setModalOpen(false);
   };
 
+  const closeModalHandlerWithReload = () => {
+    setModalOpen(false);
+    window.location.reload(false);
+  };
+
   const openModalHandler = () => {
     setModalOpen(true);
   };
@@ -82,21 +88,30 @@ function App() {
   }, []);
 
   return (
-    <div className="main-back">
-      <button onClick={openModalHandler}>New Post</button>
-      {modalOpen && <Backdrop onClick={closeModalHandler} />}
-      {modalOpen && <Form onClick={closeModalHandler} />}
-      <div className="content-wrapper">
-        {ListOfProduct
-          ? ListOfProduct.map((databasearrdetail) => {
-              return (
-                <Post
-                  desc={databasearrdetail.Desc}
-                  title={databasearrdetail.Title}
-                />
-              );
-            })
-          : ""}
+    <div>
+      <div className="navbar">
+        <button onClick={openModalHandler} className="connect-button">
+          New Post
+        </button>
+        {modalOpen && <Backdrop onClick={closeModalHandler} />}
+        {modalOpen && <Form onClick={closeModalHandlerWithReload} />}
+
+        {!isConnected && <Connector onLogin={login} />}
+        {isConnected && <div className="account-number">{account}</div>}
+      </div>
+      <div className="main-back">
+        <div className="content-wrapper">
+          {ListOfProduct
+            ? ListOfProduct.map((databasearrdetail) => {
+                return (
+                  <Post
+                    desc={databasearrdetail.Desc}
+                    title={databasearrdetail.Title}
+                  />
+                );
+              })
+            : ""}
+        </div>
       </div>
     </div>
   );
