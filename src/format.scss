@@ -21,6 +21,20 @@ $radius: 1.2rem;
   left: 0;
 }
 
+.logo-brand {
+  display: flex;
+  margin-top: 5px;
+}
+
+#brand {
+  padding-bottom: 2px;
+}
+
+.main-logo {
+  width: 5rem;
+  padding-right: 1rem;
+}
+
 h3 {
   margin-top: 0;
 }
@@ -55,6 +69,26 @@ h3 {
   border: 2px solid $clr-primary;
   background: transparent;
   color: $clr-primary;
+  border-radius: $radius;
+  transition: background 100ms ease-in, color 100ms ease-in;
+  background-color: white;
+  cursor: pointer;
+
+  &:hover {
+    background: $clr-primary;
+    color: white;
+  }
+}
+
+.reset-button {
+  padding: 1rem;
+  font-family: inherit;
+  font-weight: bold;
+  font-size: 1rem;
+  margin: 1rem;
+  border: 2px solid red;
+  background: transparent;
+  color: red;
   border-radius: $radius;
   transition: background 100ms ease-in, color 100ms ease-in;
   background-color: white;

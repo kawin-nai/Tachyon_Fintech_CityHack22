@@ -12,6 +12,8 @@ import like from "./like.png";
 import dislike from "./dislike.png";
 import likefilled from "./likefilled.png";
 import dislikefilled from "./dislikefilled.png";
+import uparrow from "./uparrow.png";
+import downarrow from "./downarrow.png";
 import bin from "./bin.png";
 import { sha256 } from "js-sha256";
 
@@ -129,7 +131,7 @@ function Postmain(props) {
         <div className="main-vote-wrapper">
           <img
             className="like-button"
-            src={likefilled}
+            src={uparrow}
             alt="Like Button"
             onClick={upVote}
           />
@@ -137,7 +139,7 @@ function Postmain(props) {
           {/* <button onClick={setVote(props.vote + 1)}>Up</button> */}
           <img
             className="dislike-button"
-            src={dislikefilled}
+            src={downarrow}
             alt="Dislike Button"
             onClick={downVote}
           />

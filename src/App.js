@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import Post from "./Components/Post";
 import Navbar from "./Components/Navbar";
 import Backdrop from "./Components/Backdrop";
@@ -17,6 +16,7 @@ import {
   child,
 } from "@firebase/database";
 import tachyoncontract from "./tachyoncontract.json";
+import logo from "./shareablelogo.svg";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBrTL0337ihHSJwk8HfDsrdd9-oFZr6xAY",
@@ -121,6 +121,12 @@ function App() {
     });
   };
 
+  const resetVote = async () => {
+    await contract.resetVote().catch((error) => {
+      alert(error.message);
+    });
+  };
+
   useEffect(() => {
     getAllData();
   }, []);
@@ -128,13 +134,22 @@ function App() {
   return (
     <div className="all">
       <div className="navbar">
-        <button onClick={openModalHandler} className="connect-button">
-          New Post
-        </button>
-        {modalOpen && <Backdrop onClick={closeModalHandler} />}
-        {modalOpen && (
-          <Form onClick={closeModalHandlerWithReload} mycontract={contract} />
-        )}
+        <div className="left-navbar">
+          <button onClick={openModalHandler} className="connect-button">
+            New Post
+          </button>
+          {modalOpen && <Backdrop onClick={closeModalHandler} />}
+          {modalOpen && (
+            <Form onClick={closeModalHandlerWithReload} mycontract={contract} />
+          )}
+          <button onClick={resetVote} className="reset-button">
+            Reset
+          </button>
+        </div>
+        <div className="logo-brand">
+          <img src={logo} alt="logo" className="main-logo" />
+          <h1 id="brand">Shareable</h1>
+        </div>
 
         {!isConnected && <Connector onLogin={login} />}
         {isConnected && <div className="account-number">{account}</div>}
