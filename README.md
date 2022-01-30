@@ -20,21 +20,21 @@ Shareable is a community-driven financial data platform with the purpose of ince
    
    Anyone can contribute or share their financial data with a focus on accessibility and anonymity to increase the capacity of sharing network.
    
-<img src="/resource/Feature1.png" width="300" alt="project_logo"/>
+   <img src="/resource/Feature1.png" width="300" alt="project_logo"/>
 
 2. Native Platform Token
    
    The platform will have its own token which can be used for subscribing to the platform and rewarding the users who share their valuable information.
    Consequently, the value of the token will be driven by the value of the information itself, creating a demand for a subscription.
 
-<img src="/resource/Feature2.png" width="300" alt="project_logo"/>
+   <img src="/resource/Feature2.png" width="300" alt="project_logo"/>
 
 
 3. On-chain Verification
    
    The platform will also provide a tamper-proof functionality by utilizing hashing (SHA256) algorithm and comparing with the hash of the data that has been stored on the          blockchain.
    
-<img src="/resource/Feature3.png" width="300" alt="project_logo"/>
+   <img src="/resource/Feature3.png" width="300" alt="project_logo"/>
 
 ## Tech used
 1. Metamask
