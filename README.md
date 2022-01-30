@@ -1,5 +1,5 @@
 # CityHack22 Project Submission
-## Project: Sharable
+## Project: Shareable
 <img src="/resource/icon.png" width="200" alt="project_logo"/>
 
 ## Team: Tachyon
