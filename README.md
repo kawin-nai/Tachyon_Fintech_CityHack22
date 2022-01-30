@@ -31,8 +31,7 @@ Shareable is a community-driven financial data platform with the purpose of ince
 <img src="/resource/Feature3.png" width="300" alt="project_logo"/>
 3. On-chain Verification
    
-   The platform will also provide a tamper-proof functionality by utilizing hashing (SHA256) algorithm and comparing with the hash of the data that has been stored on the   
-   blockchain.
+   The platform will also provide a tamper-proof functionality by utilizing hashing (SHA256) algorithm and comparing with the hash of the data that has been stored on the          blockchain.
 
 ## Tech used
 1. Metamask
